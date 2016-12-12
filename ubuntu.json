@@ -45,9 +45,9 @@
       }
     },
     {
+      "boot_wait": "30s",
       "boot_command": [
-        "{{ user `boot_command_prefix` }}",
-        "/install/vmlinuz noapic ",
+        "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
         "file=/floppy/{{ user `preseed` }} ",
         "debian-installer={{ user `locale` }} auto locale={{ user `locale` }} kbd-chooser/method=us ",
         "hostname={{ user `hostname` }} ",
@@ -77,8 +77,8 @@
       "ssh_username": "{{ user `ssh_username` }}",
       "type": "hyperv-iso",
       "vm_name": "{{user `vm_name`}}",
-      "ram_size": 1024,
-      "cpu": 2,
+      "ram_size": "{{user `memory`}}",
+      "cpu": "{{user `cpus`}}",
       "generation": 1
     },
     {

@@ -17,3 +17,32 @@ I brought up `dmesg` on the second VT. It shows that user vars weren't handled c
 [dmesg boot string shows missing user variables](screenshots/missing_vars.png)
 
 
+## Bug? Cannot get SSH IP address for some distros
+
+Ubuntu 12.04 doesn't have the updated Linux integration components by default. Getting the IP address of a running VM won't work.
+
+
+```none
+016/12/11 21:47:44 packer.exe: 2016/12/11 21:47:44 Special code '<enter>' found, replacing with: [1c 9c]
+2016/12/11 21:48:02 packer.exe: 2016/12/11 21:48:02 [INFO] Waiting for SSH, up to timeout: 2h46m40s
+2016/12/11 21:48:02 ui: ==> hyperv-iso: Waiting for SSH to become available...
+==> hyperv-iso: Waiting for SSH to become available...
+2016/12/11 21:48:06 packer.exe: 2016/12/11 21:48:06 [DEBUG] Error getting SSH address: No ip address.
+2016/12/11 21:48:16 packer.exe: 2016/12/11 21:48:16 [DEBUG] Error getting SSH address: No ip address.
+2016/12/11 21:48:25 packer.exe: 2016/12/11 21:48:25 [DEBUG] Error getting SSH address: No ip address.
+2016/12/11 21:48:34 packer.exe: 2016/12/11 21:48:34 [DEBUG] Error getting SSH address: No ip address.
+```
+
+Even once installation is complete, the IP address cannot be found
+
+
+```none
+get-vm -name ubuntu1204 | Get-VMNetworkAdapter
+
+Name            IsManagementOs VMName     SwitchName MacAddress   Status                      IPAddresses
+----            -------------- ------     ---------- ----------   ------                      -----------
+Network Adapter False          ubuntu1204 Wifi       00155D016FA0 {Degraded, ProtocolVersion} {}
+```
+
+[this thread](http://stackoverflow.com/questions/33027204/how-can-i-get-hyper-v-to-detect-my-ubuntu-vms-ip-address) seems to show its a known issue resolved by running
+`sudo apt-get install "linux-cloud-tools-$(uname -r)"`

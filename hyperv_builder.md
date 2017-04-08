@@ -168,3 +168,14 @@ Stderr:
 
 ==> Builds finished but no artifacts were created.
 ```
+
+
+## 4/8/2017 trying ubuntu1604.json with Packer v1.0.0
+
+
+Note: prepend this with `cmd /c` if running from PowerShell
+
+```
+packer.exe build -only=hyperv-iso -var-file=ubuntu1604.json ubuntu.json
+```
+

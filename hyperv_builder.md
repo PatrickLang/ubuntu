@@ -179,3 +179,4 @@ Note: prepend this with `cmd /c` if running from PowerShell
 packer.exe build -only=hyperv-iso -var-file=ubuntu1604.json ubuntu.json
 ```
 
+Still got stuck with kvp daemon failed. Had to stop & start VM then it proceeded
